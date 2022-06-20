@@ -12,6 +12,9 @@ const theme = createTheme({
       contrastText: "#ffffff",
     },
   },
+  background: {
+    default: "white",
+  },
   typography: {
     fontFamily: "'Poppins', sans-serif",
   },

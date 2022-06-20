@@ -70,27 +70,6 @@ const Details = ({ handleOpen, title, vote_average, genres, year, overview }) =>
         >
           play Trailer
         </Button>
-        <Button
-          sx={{
-            backgroundColor: "rgba(109, 109, 110, 0.7)",
-            fontWeight: 700,
-            ml:2,
-            color: "#fff",
-            "&:hover": {
-              backgroundColor: "rgba(109, 109, 110, 0.4)",
-            },
-            textTransform: "capitalize",
-
-            height: "50px",
-          }}
-          variant="contained"
-          color="secondary"
-          startIcon={<AddIcon />}
-          size="large"
-          // onClick={handleOpen}
-        >
-          Add to My List
-        </Button>
         <IconButton
           sx={{ color: "white" }}
           aria-label="like"

@@ -2,10 +2,11 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SearchList = () => {
+  const Navigate=useNavigate()
   const { shows } = useSelector((state) => state);
-  console.log(shows);
   const baseURL = "https://image.tmdb.org/t/p/original/";
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -35,9 +36,10 @@ const SearchList = () => {
             <SearchIcon fontSize="small" sx={{ m: "2px 10px 0 13px" }} />
           )}
           <Typography
-            component={"a"}
-            href={`http://localhost:3000/details/${post.id}`}
-            target="_blank"
+            component={Box}
+            // href={`http://localhost:3000/details/${post.id}`}
+            // target="_blank"
+            onClick={()=>Navigate(`/details/${post.id}`)}
             sx={{
               fontSize: "15px",
             }}

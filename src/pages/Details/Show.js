@@ -4,6 +4,7 @@ import useShow from "../../hooks/useShow";
 import Details from "./Details";
 import movieTrailer from "movie-trailer";
 import TrailerModal from "../../components/TrailerModal";
+import List from "./List";
 
 const Show = () => {
   const [show, isLoading] = useShow();
@@ -21,7 +22,7 @@ const Show = () => {
       .catch((error) => console.log(error));
   };
   const handleClose = () => setOpen(false);
-  console.log(show?.networks[0].name)
+  console.log(show?.networks[0].name);
   return (
     <Box>
       {!isLoading && show && (
@@ -29,7 +30,12 @@ const Show = () => {
           <Box sx={{ position: "absolute", top: 0, left: 0, zIndex: -1 }}>
             <Box sx={{ position: "relative", width: "100%" }}>
               <img
-                style={{height:'100vh', width: "99.5vw", objectFit:'cover',filter: "brightness(50%) blur(4px)" }}
+                style={{
+                  height: "100vh",
+                  width: "99.5vw",
+                  objectFit: "cover",
+                  filter: "brightness(50%) blur(4px)",
+                }}
                 src={`https://image.tmdb.org/t/p/original${show.backdrop_path}`}
                 alt={""}
               />
@@ -38,9 +44,9 @@ const Show = () => {
                   position: "absolute",
                   bottom: 0,
                   transform: "translateY(10px)",
-                  background: "linear-gradient(180deg,transparent 20%,rgb(20, 20, 20) 80%)",
+                  background: "linear-gradient(180deg,transparent 0%,rgb(230, 230, 230) 100%)",
                   width: "100%",
-                  height: "500px",
+                  height: "200px",
                 }}
               ></Box>
             </Box>
@@ -55,7 +61,10 @@ const Show = () => {
               handleOpen={handleOpen}
             />
             <Typography variant="h6" sx={{ color: "white" }}>
-              Executive producers:{show?.created_by.map(elem=><span style={{marginRight:'10px'}}>{elem.name}</span>)}
+              Executive producers:
+              {show?.created_by.map((elem) => (
+                <span style={{ marginRight: "10px" }}>{elem.name}</span>
+              ))}
             </Typography>
             <Typography variant="h6" sx={{ color: "white" }}>
               No. of seasons : {show?.number_of_seasons}
@@ -64,13 +73,14 @@ const Show = () => {
               Original network :{show?.networks[0].name}
             </Typography>
             <Typography variant="h6" sx={{ color: "white" }}>
-            Original release :{show?.first_air_date}
+              Original release :{show?.first_air_date}
             </Typography>
             <TrailerModal trailerUrl={trailerUrl} open={open} handleClose={handleClose} />
           </Container>
-            <Typography textAlign={'center'} variant="h5" sx={{ color: "white" }}>
+          <Typography textAlign={"center"} variant="h5" sx={{ color: "white" }}>
             {show?.tagline}
-            </Typography>
+          </Typography>
+          <List seasons={show?.seasons} />
         </Box>
       )}
     </Box>
